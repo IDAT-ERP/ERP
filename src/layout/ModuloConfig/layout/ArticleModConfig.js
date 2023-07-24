@@ -1,7 +1,10 @@
 import React from "react";
 import '../estilos/imagen.css';
-import '../estilos/contenedor.css'
-import imagenEmpleados from '../imagenes/empleados.png'
+import '../estilos/contenedor.css';
+import imagenEmpleados from '../imagenes/empleados.png';
+import imagenUser from '../imagenes/user.png';
+import imagenPersonal from '../imagenes/personal.png';
+import imagenRoles from '../imagenes/roles.png';
 import { Link } from "react-router-dom";
 
 export default function ArticleModConfig() {
@@ -13,12 +16,12 @@ export default function ArticleModConfig() {
                 <div className="container conten">
 
                     <div className="card ">
-                        <Link className="btn card-modConf">
+                        <Link className="btn card-modConf" to={"/registroEmpleado"}>
 
 
                             <div className="image-container">
                                 <img src={imagenEmpleados} className="img-modconfig"
-                                    alt="Empleados"></img>
+                                    alt="Reg Empleados"></img>
                             </div>
 
                             <div class="card-body">
@@ -32,12 +35,12 @@ export default function ArticleModConfig() {
 
 
                     <div className="card ">
-                        <Link className="btn card-modConf">
+                        <Link className="btn card-modConf" to={"/registroUsuario"}>
 
 
                             <div className="image-container">
-                                <img src={imagenEmpleados} className="img-modconfig"
-                                    alt="Empleados"></img>
+                                <img src={imagenUser} className="img-modconfig"
+                                    alt="Usuario"></img>
                             </div>
 
                             <div class="card-body">
@@ -46,6 +49,39 @@ export default function ArticleModConfig() {
 
                         </Link>
                     </div>
+                    <div className="card ">
+                        <Link className="btn card-modConf" to={"/registroRoles"}>
+
+
+                            <div className="image-container">
+                                <img src={imagenRoles} className="img-modconfig"
+                                    alt="Usuario"></img>
+                            </div>
+
+                            <div class="card-body">
+                                <span className="texto">Configurar Roles</span>
+                            </div>
+
+                        </Link>
+                    </div>
+
+                    <div className="card ">
+                        <Link className="btn card-modConf" to={"/verPersonal"}>
+
+                            <div className="image-container">
+                                <img src={imagenPersonal} className="img-modconfig"
+                                    alt="Personal"></img>
+                            </div>
+
+                            <div class="card-body">
+                                <span className="texto">Personal</span>
+                            </div>
+
+                        </Link>
+                    </div>
+
+
+
 
 
                 </div>

@@ -2,12 +2,14 @@ import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./layout/Navbar";
 import Aside from "./layout/Aside";
-import Registros from "./pages/Registros";
+import VerPersonal from "./users/VerEmpleados";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AddUser from "./users/AddUser";
+import AddEmpleado from "./users/AddEmpleado";
 import EditUser from "./users/EditUser";
-import ViewUser from "./users/ViewUser";
 import ModConfig from './layout/ModuloConfig/layout/ArticleModConfig'
+import AddUsuario from "./users/AddUsuario";
+
+
 
 function App() {
   return (
@@ -22,10 +24,12 @@ function App() {
       <div className="contenedor-sub">
         <Routes>
           <Route exact path="/modConfig" element={<ModConfig/>} />
-          <Route exact path="/" element={<Registros />} />
+          <Route exact path="/verPersonal" element={<VerPersonal />} />
           <Route exact path="/edituser/:id" element={<EditUser />} />
-          <Route exact path="/viewuser/:id" element={<ViewUser />} />
-
+          
+          <Route exact path="/registroEmpleado" element={<AddEmpleado/>}/>
+          <Route exact path="/registroUsuario" element={<AddUsuario/>}/>
+          
         </Routes>
         </div>
       </div>

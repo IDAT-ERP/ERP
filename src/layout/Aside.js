@@ -57,6 +57,7 @@ export default function Aside() {
                 </Link>
             </li>
 
+
             <li className="panel">
                 <Link className="btn custom-outline-primary mx-2" to={`/modConfig`}>
                 <img className="img" src={imagenConfiguracion}></img>

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function Registros() {
+export default function VerPersonal() {
+  
   const [users, setUsers] = useState([]);
 
   //const { id } = useParams();
@@ -12,7 +13,7 @@ export default function Registros() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/users");
+    const result = await axios.get("http://localhost:8080/ModConfig/verPersonal");
     setUsers(result.data);
   };
 
@@ -28,10 +29,13 @@ export default function Registros() {
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Name</th>
-              <th scope="col">Username</th>
-              <th scope="col">Email</th>
-              <th scope="col">Action</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">DNI</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Foto</th>
+              <th scope="col">ROL</th>
+              <th scope="col">OPCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -40,9 +44,12 @@ export default function Registros() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
+                <td>{user.nombres}</td>
+                <td>{user.dni}</td>
+                <td>{user.celular}</td>
+                <td>{user.correo}</td>
+                <td>{user.foto}</td>
+                <td>{user.rol}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
