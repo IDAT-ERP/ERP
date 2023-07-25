@@ -6,14 +6,14 @@ export default function AddUser() {
   let navigate = useNavigate();
 
   const [user, setUser] = useState({
-    nombre: "",
+    nombres: "",
     dni: "",
     celular:"",
     correo: "",
     foto:""
   });
 
-  const { nombre: nombre, dni: dni, celular: celular,correo: email,foto:foto} = user;
+  const { nombres: nomb, dni: dni, celular: celular,correo: correo,foto:foto} = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,8 +21,8 @@ export default function AddUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/user", user);
-    navigate("/");
+    await axios.post("http://localhost:8080/ModConfig/Personal", user);
+    navigate("/verPersonal");
   };
 
   return (
@@ -33,15 +33,15 @@ export default function AddUser() {
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
-              <label htmlFor="nombre" className="form-label">
+              <label htmlFor="nombres" className="form-label">
                 Nombres Completos:
               </label>
               <input
                 type={"text"}
                 className="form-control"
                 placeholder="Ingresar nombres completos"
-                name="nombre"
-                value={nombre}
+                name="nombres"
+                value={nomb}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
@@ -72,7 +72,7 @@ export default function AddUser() {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Email" className="form-label">
+              <label htmlFor="correo" className="form-label">
                 Correo:
               </label>
               <input
@@ -80,7 +80,7 @@ export default function AddUser() {
                 className="form-control"
                 placeholder="Ingrese correo electrónico"
                 name="correo"
-                value={email}
+                value={correo}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
