@@ -7,9 +7,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AddEmpleado from "./users/AddEmpleado";
 import EditEmpleado from "./users/EditEmpleado";
 import ModConfig from './layout/ModuloConfig/layout/ArticleModConfig'
-import AddUsuario from "./users/AddUsuario";
 
-
+import AddProveedor from './users/AddProveedor';
+import AddClientes from './users/AddClientes';
 
 function App() {
   return (
@@ -26,9 +26,10 @@ function App() {
           <Route exact path="/modConfig" element={<ModConfig/>} />
           <Route exact path="/verPersonal" element={<VerPersonal />} />
           <Route exact path="/edituser/:id" element={<EditEmpleado />} />
-          
           <Route exact path="/registroEmpleado" element={<AddEmpleado/>}/>
-          <Route exact path="/registroUsuario" element={<AddUsuario/>}/>
+
+          <Route exact path="/registroProveedor" element={<AddProveedor/>}/>
+          <Route exact path="/registroClientes" element={<AddClientes/>}/>
           
         </Routes>
         </div>
