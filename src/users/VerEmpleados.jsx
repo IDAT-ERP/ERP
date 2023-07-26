@@ -18,7 +18,7 @@ export default function VerPersonal() {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/user/${id}`);
+    await axios.delete(`http://localhost:8080/ModConfig/empleado/${id}`);
     loadUsers();
   };
 

@@ -8,12 +8,14 @@ export default function EditUser() {
   const { id } = useParams();
 
   const [user, setUser] = useState({
-    nombre: "",
-    username: "",
-    email: "",
+    nombres: "",
+    dni: "",
+    celular:"",
+    correo: "",
+    foto:""
   });
 
-  const { name, username, email } = user;
+  const { nombres: nomb, dni: dni, celular: celular,correo: correo,foto:foto} = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -38,53 +40,87 @@ export default function EditUser() {
     <div className="container">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-          <h2 className="text-center m-4">Edit User</h2>
+          <h2 className="text-center m-4">REGISTRO DE EMPLEADOS</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
             <div className="mb-3">
-              <label htmlFor="Name" className="form-label">
-                Name
+              <label htmlFor="nombres" className="form-label">
+                Nombres Completos:
               </label>
               <input
                 type={"text"}
                 className="form-control"
-                placeholder="Enter your name"
-                name="name"
-                value={name}
+                placeholder="Ingresar nombres completos"
+                name="nombres"
+                value={nomb}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="Username" className="form-label">
-                Username
+              <label htmlFor="dni" className="form-label">
+                DNI:
               </label>
               <input
-                type={"text"}
+                type={"number"}
                 className="form-control"
-                placeholder="Enter your username"
-                name="username"
-                value={username}
+                placeholder="Ingrese su DNI"
+                name="dni"
+                value={dni}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="Celular" className="form-label">
+                Celular:
+              </label>
+              <input
+                type={"number"}
+                className="form-control"
+                placeholder="Ingrese celular"
+                name="celular"
+                value={celular}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="correo" className="form-label">
+                Correo:
+              </label>
+              <input
+                type={"email"}
+                className="form-control"
+                placeholder="Ingrese correo electrónico"
+                name="correo"
+                value={correo}
+                onChange={(e) => onInputChange(e)}
+              />
+            </div>
+            
+            <div className="mb-3">
+            
               <label htmlFor="Email" className="form-label">
-                E-mail
+                Foto:
               </label>
               <input
-                type={"text"}
+                type={"file"}
                 className="form-control"
-                placeholder="Enter your e-mail address"
-                name="email"
-                value={email}
+                placeholder="Ingrese correo electrónico"
+                accept=".jpg,.png,.jpeg"
+                name="foto"
+                value={foto}
                 onChange={(e) => onInputChange(e)}
               />
             </div>
+
+
+
+
+
             <button type="submit" className="btn btn-outline-primary">
-              Submit
+              Registrar
             </button>
             <Link className="btn btn-outline-danger mx-2" to="/modConfig">
-              Cancel
+              Cancelar
             </Link>
           </form>
         </div>

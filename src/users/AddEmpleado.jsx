@@ -86,6 +86,7 @@ export default function AddUser() {
             </div>
             
             <div className="mb-3">
+            
               <label htmlFor="Email" className="form-label">
                 Foto:
               </label>
