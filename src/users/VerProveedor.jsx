@@ -57,7 +57,7 @@ export default function VerPersonal() {
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/edituser/${user.id}`}
+                    to={`/editProveedor/${user.id}`}
                   >
                     Edit
                   </Link>

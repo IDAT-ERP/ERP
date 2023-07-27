@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-export default function AddUser() {
+export default function EditUser() {
   let navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [user, setUser] = useState({
     razonSocial: "",
@@ -19,12 +21,19 @@ export default function AddUser() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    loadUser();
+  }, []);
 
-  
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/ModConfig/proveedor", user);
+    await axios.put(`http://localhost:8080/ModConfig/empleado/${id}`, user);
     navigate("/verProveedor");
+  };
+
+  const loadUser = async () => {
+    const result = await axios.get(`http://localhost:8080/ModConfig/verProveedor/${id}`);
+    setUser(result.data);
   };
 
   return (

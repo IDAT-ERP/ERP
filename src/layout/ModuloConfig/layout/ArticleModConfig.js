@@ -132,6 +132,20 @@ export default function ArticleModConfig() {
                     </div>
 
 
+                    <div className="card ">
+                        <Link className="btn card-modConf" to={"/verProveedor"}>
+
+                            <div className="image-container">
+                                <img src={imagenPersonal} className="img-modconfig"
+                                    alt="Personal"></img>
+                            </div>
+
+                            <div class="card-body">
+                                <span className="texto">Proveedor</span>
+                            </div>
+
+                        </Link>
+                    </div>
 
 
 

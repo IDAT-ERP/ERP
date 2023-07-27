@@ -104,7 +104,6 @@ export default function AddUser() {
 
 
 
-
             <button type="submit" className="btn btn-outline-primary">
               Registrar
             </button>
