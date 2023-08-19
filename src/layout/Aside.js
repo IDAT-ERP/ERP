@@ -28,6 +28,14 @@ export default function Aside() {
                
            
         <ul className="listas-items">
+
+
+            <li className="panel">
+                <Link className="btn custom-outline-primary mx-2" to={`/modCompras`}>
+                <img className="img" src={imagenProveedores}></img>
+                <span className="text">Compras</span>
+                </Link>
+            </li>
             
             <li className="panel">
                 <Link className="btn custom-outline-primary mx-2" to={`/`}>
@@ -50,12 +58,7 @@ export default function Aside() {
                 </Link>
             </li>
 
-            <li className="panel">
-                <Link className="btn custom-outline-primary mx-2" to={`/adduser`}>
-                <img className="img" src={imagenProveedores}></img>
-                <span className="text">Proveedores</span>
-                </Link>
-            </li>
+            
 
 
             <li className="panel">

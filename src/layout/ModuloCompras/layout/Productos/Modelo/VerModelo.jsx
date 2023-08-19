@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function VerPersonal() {
+export default function VerModelo() {
   
   const [users, setUsers] = useState([]);
 
@@ -13,12 +13,12 @@ export default function VerPersonal() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/ModConfig/verProveedor");
+    const result = await axios.get("http://localhost:8080/ModProductos/verModelo");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModConfig/proveedor/${id}`);
+    await axios.delete(`http://localhost:8080/ModProductos/modelo/${id}`);
     loadUsers();
   };
 
@@ -29,10 +29,9 @@ export default function VerPersonal() {
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Producto</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Serie</th>
+              <th scope="col">Nombre Marca</th>
+              <th scope="col">Nombre Modelo</th>
+              <th scope="col">OPCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -41,21 +40,18 @@ export default function VerPersonal() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.razonSocial}</td>
-                <td>{user.ruc}</td>
-                <td>{user.celular}</td>
-                <td>{user.correo}</td>
-                <td>{user.direccion}</td>
+                <td>{user.marca.nombre}</td>
+                <td>{user.nombre}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewuser/${user.id}`}
+                    to={`/viewmodelo/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editProveedor/${user.id}`}
+                    to={`/editmodelo/${user.id}`}
                   >
                     Edit
                   </Link>
@@ -67,10 +63,19 @@ export default function VerPersonal() {
                   </button>
                 </td>
               </tr>
+              
             ))}
           </tbody>
         </table>
       </div>
+      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarModelo"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/ProductosCompra"}>
+      Regresar
+      </Link>
+      
     </div>
   );
 }

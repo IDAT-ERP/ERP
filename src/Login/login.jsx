@@ -18,18 +18,18 @@ export default function Login() {
         setUser({...user,[e.target.name]:e.target.value});
     };
 
-
+/*
     const onSubmit = async (e) => {
         e.preventDefault();
         await axios.post("http://localhost:8080/ModConfig/empleado", user);
         navigate("/verPersonal");
       };
-
+*/
 
     return(
         <div className="container">
 
-            <form className="card" onSubmit={(e)=>onSubmit(e)}>
+            <form className="card" >
 
                 <div>
                     <label htmlFor="usuario">Usuario:</label>
@@ -39,7 +39,7 @@ export default function Login() {
                     placeholder="ingrese usuario"
                     name="usuario"
                     value={usuario}
-                    onChange={(e)=>onInputChange(e)}/>
+                    />
                 </div>
                 
                 <div>
@@ -50,12 +50,12 @@ export default function Login() {
                     placeholder="ingrese contraseña"
                     name="contraseña"
                     value={contraseña}
-                    onChange={(e)=>onInputChange(e)}/>
+                     />
                 </div>
                 
 
                 
-                <button className="btn btn-blue" type="submit">Iniciar Sesion</button>
+                <button className="btn btnwarning" type="submit">Iniciar Sesion</button>
                 <button></button>
             </form>
 

@@ -5,7 +5,7 @@ import imagenEmpleados from '../imagenes/empleados.png';
 import imagenUser from '../imagenes/user.png';
 import imagenPersonal from '../imagenes/personal.png';
 import imagenRoles from '../imagenes/roles.png';
-import imagenProveedores from '../../../imagenes/proveedores.png';
+
 import imagenClientes from '../../../imagenes/cliente.png';
 import imagenProductos from '../../../imagenes/almacen.png';
 import { Link } from "react-router-dom";
@@ -35,20 +35,7 @@ export default function ArticleModConfig() {
                     </div>
 
 
-                    <div className="card ">
-                        <Link className="btn card-modConf" to={"/registroProveedor"}>
-
-                            <div className="image-container">
-                                <img src={imagenProveedores} className="img-modconfig"
-                                    alt="Proveedor"></img>
-                            </div>
-
-                            <div class="card-body">
-                                <span className="texto">Registrar Proveedores</span>
-                            </div>
-
-                        </Link>
-                    </div>
+                   
 
                     <div className="card ">
                         <Link className="btn card-modConf" to={"/registroClientes"}>

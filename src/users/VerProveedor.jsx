@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+
 export default function VerPersonal() {
   
   const [users, setUsers] = useState([]);
@@ -17,10 +18,22 @@ export default function VerPersonal() {
     setUsers(result.data);
   };
 
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModConfig/proveedor/${id}`);
+  const deleteUser = async (id,emp) => {
+
+    const pregunta=window.confirm(`¿Está seguro que desea eliminar los datos de la empresa ${emp} ?`);
+    
+    if (pregunta) {
+      await axios.delete(`http://localhost:8080/ModConfig/proveedor/${id}`);
     loadUsers();
+    }else{
+      
+    }
+    
   };
+
+
+
+
 
   return (
     <div className="container">
@@ -61,18 +74,30 @@ export default function VerPersonal() {
                   >
                     Edit
                   </Link>
+
+                  
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => deleteUser(user.id)}
+                    onClick={() => deleteUser(user.id,user.razonSocial)}
                   >
                     Delete
                   </button>
+
+
+
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <Link className="btn btn-outline-primary mx-2" to={"/registroProveedor"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/ModCompras"}>
+      Regresar
+      </Link>
     </div>
   );
 }

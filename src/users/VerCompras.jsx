@@ -29,10 +29,10 @@ export default function VerPersonal() {
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Razon Social</th>
-              <th scope="col">RUC</th>
-              <th scope="col">Celular</th>
-              <th scope="col">Correo</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Marca</th>
+              <th scope="col">Modelo</th>
+              <th scope="col">Serie</th>
               <th scope="col">Direccion</th>
               <th scope="col">OPCIONES</th>
             </tr>

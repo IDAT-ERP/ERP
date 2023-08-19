@@ -27,7 +27,7 @@ export default function EditUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/ModConfig/empleado/${id}`, user);
+    await axios.put(`http://localhost:8080/ModConfig/proveedor/${id}`, user);
     navigate("/verProveedor");
   };
 
@@ -118,7 +118,7 @@ export default function EditUser() {
             <button type="submit" className="btn btn-outline-primary">
               Registrar
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/modConfig">
+            <Link className="btn btn-outline-danger mx-2" to="/verProveedor">
               Cancelar
             </Link>
           </form>
