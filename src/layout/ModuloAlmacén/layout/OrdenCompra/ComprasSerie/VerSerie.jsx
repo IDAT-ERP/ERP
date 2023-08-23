@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-export default function VerCategoria() {
+export default function VerCompra() {
   
   const [users, setUsers] = useState([]);
 
@@ -14,23 +13,42 @@ export default function VerCategoria() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://26.166.32.112:8080/ModProductos/verCategoria");
+    const result = await axios.get("http://localhost:8080/ModCompras/verComprasSeries");
     setUsers(result.data);
   };
 
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModProductos/categoria/${id}`);
+
+  const deleteUser = async (id,emp) => {
+
+    const pregunta=window.confirm(`¿Está seguro que desea eliminar el numero de serie de la OC ${emp} ?`);
+    
+    if (pregunta) {
+      await axios.delete(`http://localhost:8080/ModCompras/compraSerie/${id}`);
     loadUsers();
+    }else{
+      
+    }
+    
   };
+
 
   return (
     <div className="container">
+       <Link className="btn btn-outline-primary mx-2" to={"/registrarComprasSeries"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
+      Regresar
+      </Link>
+
       <div className="py-4">
         <table className="table border shadow">
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Nombre Categoria</th>
+              <th scope="col">N° OC</th>
+              <th scope="col">N° Serie del Producto</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -40,23 +58,24 @@ export default function VerCategoria() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
+                <td>{user.detalle.compras.nombre}{/* */}</td>
                 <td>{user.nombre}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewcategoria/${user.id}`}
+                    to={`/viewcompra/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editcategoria/${user.id}`}
+                    to={`/editcompraserie/${user.id}`}
                   >
                     Edit
                   </Link>
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => deleteUser(user.id)}
+                    onClick={() => deleteUser(user.id,user.detalle.compras.nombre)}
                   >
                     Delete
                   </button>
@@ -67,13 +86,7 @@ export default function VerCategoria() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCategoria"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/ProductosCompra"}>
-      Regresar
-      </Link>
+     
       
     </div>
   );

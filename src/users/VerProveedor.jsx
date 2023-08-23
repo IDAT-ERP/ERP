@@ -37,6 +37,13 @@ export default function VerPersonal() {
 
   return (
     <div className="container">
+      <Link className="btn btn-outline-primary mx-2" to={"/registroProveedor"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/ModCompras"}>
+      Regresar
+      </Link>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
@@ -91,13 +98,7 @@ export default function VerPersonal() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/registroProveedor"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/ModCompras"}>
-      Regresar
-      </Link>
+      
     </div>
   );
 }

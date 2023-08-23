@@ -24,6 +24,19 @@ import VerCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasOC/VerOC
 import RegistrarCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasOC/AddOC"
 import EditarCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasOC/EditOC"
 
+import VerComprasProductos from "./layout/ModuloCompras/layout/OrdenCompra/ProductosCompra/VerProducto"
+import RegistrarComprasProductos from "./layout/ModuloCompras/layout/OrdenCompra/ProductosCompra/AddProducto"
+import EditarCompraProductos from "./layout/ModuloCompras/layout/OrdenCompra/ProductosCompra/EditProducto"
+
+import VerDetalleCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasDetalle/VerDetalle"
+import RegistrarDetalleCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasDetalle/AddDetalle"
+import EditarDetalleCompra from "./layout/ModuloCompras/layout/OrdenCompra/ComprasDetalle/EditDetalle"
+
+import VerComprasSeries from "./layout/ModuloCompras/layout/OrdenCompra/ComprasSerie/VerSerie"
+import RegistrarComprasSeries from "./layout/ModuloCompras/layout/OrdenCompra/ComprasSerie/AddSerie"
+import EditarComprasSeries from "./layout/ModuloCompras/layout/OrdenCompra/ComprasSerie/EditSerie"
+
+
 
 
 import AddEmpleado from "./users/AddEmpleado";
@@ -40,6 +53,8 @@ import ModCompras from "./layout/ModuloCompras/layout/ArticleModCompras"
 
 import AddProveedor from './users/AddProveedor';
 import AddClientes from './users/AddClientes';
+import VerClientes from './users/VerClientes';
+import EditClientes from './users/EditClientes';
 
 function App() {
   return (
@@ -69,16 +84,22 @@ function App() {
           <Route exact path="/registrarModelo" element={<RegistrarModelo/>} />
           <Route exact path="/editmodelo/:id" element={<EditarModelo/>} />
 
-
-
           <Route exact path="/OCCompra" element={<OCCompra/>} />
           <Route exact path="/verCompra" element={<VerCompra/>} />
           <Route exact path="/registrarCompra" element={<RegistrarCompra/>} />
           <Route exact path="/editcompra/:id" element={<EditarCompra/>} />
           
+          <Route exact path="/verComprasProductos" element={<VerComprasProductos/>} />
+          <Route exact path="/registrarComprasProductos" element={<RegistrarComprasProductos/>} />
+          <Route exact path="/editcompraproductos/:id" element={<EditarCompraProductos/>} />
 
+          <Route exact path="/verDetalleCompra" element={<VerDetalleCompra/>} />
+          <Route exact path="/registrarDetalleCompra" element={<RegistrarDetalleCompra/>} />
+          <Route exact path="/editdetallecompra/:id" element={<EditarDetalleCompra/>} />
 
-
+          <Route exact path="/verComprasSeries" element={<VerComprasSeries/>} />
+          <Route exact path="/registrarComprasSeries" element={<RegistrarComprasSeries/>} />
+          <Route exact path="/editcompraserie/:id" element={<EditarComprasSeries/>} />
 
 
 
@@ -90,7 +111,13 @@ function App() {
           <Route exact path="/registroProveedor" element={<AddProveedor/>}/>
           <Route exact path="/editProveedor/:id" element={<EditProveedor />} />
           <Route exact path="/verProveedor" element={<VerProveedor />} />
+
           <Route exact path="/registroClientes" element={<AddClientes/>}/>
+          <Route exact path="/verClientes" element={<VerClientes />} />
+          <Route exact path="/editcliente/:id" element={<EditClientes />} />
+          
+
+
         </Routes>
         </div>
       </div>

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-export default function VerCategoria() {
+export default function VerDetalleCompra() {
   
   const [users, setUsers] = useState([]);
 
@@ -14,23 +13,32 @@ export default function VerCategoria() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://26.166.32.112:8080/ModProductos/verCategoria");
+    const result = await axios.get("http://localhost:8080/ModCompras/verDetalleCompra");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModProductos/categoria/${id}`);
+    await axios.delete(`http://localhost:8080/ModCompras/detalle/${id}`);
     loadUsers();
   };
 
   return (
     <div className="container">
+      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarDetalleCompra"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
+      Regresar
+      </Link>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Nombre Categoria</th>
+              <th scope="col">N° Orden de Compra</th>
+              <th scope="col">Detalle Productos Adquiridos</th>
+              <th scope="col">Cantidad</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -40,17 +48,20 @@ export default function VerCategoria() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.nombre}</td>
+                <td>{user.compras.nombre}</td>
+                <td>{user.productos.categoria.nombre+" "+user.productos.marca.nombre
+                    +" "+user.productos.modelo.nombre}</td>
+                <td>{user.cantidad}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewcategoria/${user.id}`}
+                    to={`/viewcompra/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editcategoria/${user.id}`}
+                    to={`/editdetallecompra/${user.id}`}
                   >
                     Edit
                   </Link>
@@ -67,13 +78,7 @@ export default function VerCategoria() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCategoria"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/ProductosCompra"}>
-      Regresar
-      </Link>
+      
       
     </div>
   );

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-export default function VerCategoria() {
+export default function VerModelo() {
   
   const [users, setUsers] = useState([]);
 
@@ -14,12 +13,12 @@ export default function VerCategoria() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://26.166.32.112:8080/ModProductos/verCategoria");
+    const result = await axios.get("http://localhost:8080/ModProductos/verModelo");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModProductos/categoria/${id}`);
+    await axios.delete(`http://localhost:8080/ModProductos/modelo/${id}`);
     loadUsers();
   };
 
@@ -30,7 +29,8 @@ export default function VerCategoria() {
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Nombre Categoria</th>
+              <th scope="col">Nombre Marca</th>
+              <th scope="col">Nombre Modelo</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -40,17 +40,18 @@ export default function VerCategoria() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
+                <td>{user.marca.nombre}</td>
                 <td>{user.nombre}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewcategoria/${user.id}`}
+                    to={`/viewmodelo/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editcategoria/${user.id}`}
+                    to={`/editmodelo/${user.id}`}
                   >
                     Edit
                   </Link>
@@ -67,7 +68,7 @@ export default function VerCategoria() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCategoria"}>
+      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarModelo"}>
       Agregar
       </Link>
 

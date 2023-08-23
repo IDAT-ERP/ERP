@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
-export default function VerCategoria() {
+export default function VerPersonal() {
   
   const [users, setUsers] = useState([]);
 
@@ -14,23 +13,40 @@ export default function VerCategoria() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://26.166.32.112:8080/ModProductos/verCategoria");
+    const result = await axios.get("http://localhost:8080/ModConfig/verClientes");
     setUsers(result.data);
   };
 
-  const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModProductos/categoria/${id}`);
+  const deleteUser = async (id,emp) => {
+    const pregunta=window.confirm(`¿Está seguro que desea eliminar los datos del cliente ${emp} ?`);
+    
+    if (pregunta) {
+      await axios.delete(`http://localhost:8080/ModConfig/cliente/${id}`);
     loadUsers();
+    }else{
+      
+    }
   };
 
   return (
     <div className="container">
+      <Link className="btn btn-outline-primary mx-2" to={"/registroClientes"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/modConfig"}>
+      Regresar
+      </Link>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Nombre Categoria</th>
+              <th scope="col">Razon Social</th>
+              <th scope="col">RUC</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Correo</th>
+              <th scope="col">Direccion</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -40,41 +56,36 @@ export default function VerCategoria() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.nombre}</td>
+                <td>{user.razonSocial}</td>
+                <td>{user.ruc}</td>
+                <td>{user.celular}</td>
+                <td>{user.correo}</td>
+                <td>{user.direccion}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewcategoria/${user.id}`}
+                    to={`/viewuser/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editcategoria/${user.id}`}
+                    to={`/edituser/${user.id}`}
                   >
                     Edit
                   </Link>
                   <button
                     className="btn btn-danger mx-2"
-                    onClick={() => deleteUser(user.id)}
+                    onClick={() => deleteUser(user.id,user.razonSocial)}
                   >
                     Delete
                   </button>
                 </td>
               </tr>
-              
             ))}
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCategoria"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/ProductosCompra"}>
-      Regresar
-      </Link>
-      
     </div>
   );
 }

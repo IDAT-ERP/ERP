@@ -1,11 +1,9 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import React, { useState ,useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function EditModelo() {
+export default function AddModelo() {
   let navigate = useNavigate();
-
-  const { id } = useParams();
 
   const [user, setUser] = useState({
     nombre: "",
@@ -15,66 +13,56 @@ export default function EditModelo() {
     tipoDocumento:""
     
   });
- 
+
   const [proveedores, setProveedores] = useState([]); // Estado para almacenar los Proveedores
 
   useEffect(() => {
-    loadUser();
-    fetchProveedor();
+    async function fetchProveedores() {
+      try {
+        const response = await axios.get("http://localhost:8080/ModConfig/verProveedor");
+        setProveedores(response.data); // Actualizar el estado con las marcas obtenidas
+      } catch (error) {
+        console.error("Error al obtener las marcas:", error);
+      }
+    }
+
+    fetchProveedores();
   }, []);
 
 
-  const loadUser = async () => {
-    try {
-      const result = await axios.get(`http://localhost:8080/ModCompras/verCompra/${id}`);  
-      setUser(result.data);
-    } catch (error) {
-      alert("Error al obtener los modelos",error);
-    }  
-  };
 
-  const fetchProveedor = async () => {
-    try {
-      const response = await axios.get("http://localhost:8080/ModConfig/verProveedor");
-      setProveedores(response.data);
-    } catch (error) {
-      console.error("Error al obtener las marcas:", error);
-    }
-  };
-
-
+  //const { nombre: nombre,marca:marca} = user;
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-
-
-  const onSelectProveedorChange = (e) => {
-    const selectedProveedorid = parseInt(e.target.value);
-    const selectedProveedor = proveedores.find((proveedor) => proveedor.id === selectedProveedorid);
-    setUser({ ...user, proveedor: selectedProveedor });
-  };
-
-
-
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
+
+    const dataToSend = {
+      nombre: user.nombre,
+      fecha:user.fecha,
+      proveedor: {
+        id: parseInt(user.proveedor)
+      },
+      total:user.total,
+      tipoDocumento:user.tipoDocumento
+
+    };
 
     try {
-      await axios.put(`http://localhost:8080/ModCompras/compra/${id}`, user);
-      navigate("/verCompra");
+      await axios.post("http://localhost:8080/ModCompras/compra", dataToSend);  
     } catch (error) {
-      console.error("Error al editar el modelo:", error);
-      alert("Error al editar el modelo. Verifica los datos e inténtalo nuevamente.");
+      
+      alert(error);
+      
     }
+    
+    navigate("/verCompra");
   };
 
-
-
-  
   return (
     <div className="container">
       <div className="row">
@@ -82,6 +70,11 @@ export default function EditModelo() {
           <h2 className="text-center m-4">REGISTRO DE COMPRAS OC</h2>
 
           <form onSubmit={(e) => onSubmit(e)}>
+
+
+ 
+          
+
             <div className="mb-3">
               <label htmlFor="nombre" className="form-label">
                 Ingrese Nombre de OC
@@ -117,8 +110,8 @@ export default function EditModelo() {
               <select
                 className="form-control"
                 name="proveedor"
-                value={user.proveedor.id}
-                onChange={(e) => onSelectProveedorChange(e)}
+                value={user.razonSocial}
+                onChange={(e) => onInputChange(e)}
               >
                 <option value="">Seleccionar Proveedor</option>
                 {proveedores.map((proveedor) => (
@@ -156,6 +149,7 @@ export default function EditModelo() {
                 onChange={(e) => onInputChange(e)}
               />
             </div>
+
 
             <button type="submit" className="btn btn-outline-primary">
               Registrar

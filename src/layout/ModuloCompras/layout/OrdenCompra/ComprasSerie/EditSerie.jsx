@@ -50,7 +50,7 @@ export default function EditModelo() {
   const onSelectMarcaChange = (e) => {
     const selectedMarcaId = parseInt(e.target.value);
     const selectedMarca = marcas.find((marca) => marca.id === selectedMarcaId);
-    setUser({ ...user, marcas: selectedMarca });
+    setUser({ ...user, marca: selectedMarca });
   };
 
 
