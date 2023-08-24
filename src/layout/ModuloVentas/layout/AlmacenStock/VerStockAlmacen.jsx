@@ -13,17 +13,26 @@ export default function VerCompra() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/ModCompras/verCompra");
+    const result = await axios.get("http://localhost:8080/ModCompras/verDetalleCompra");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModCompras/compra/${id}`);
+    await axios.delete(`http://localhost:8080/ModCompras/detalle/${id}`);
     loadUsers();
   };
 
   return (
     <div className="container">
+
+      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCompra"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/modAlmacen"}>
+      Regresar
+      </Link>
+
       <div className="py-4">
         <table className="table border shadow">
           <thead>
@@ -31,9 +40,8 @@ export default function VerCompra() {
               <th scope="col">S.N</th>
               <th scope="col">fecha</th>
               <th scope="col">N° OC</th>
-              <th scope="col">Proveedor</th>
-              <th scope="col">Total</th>
-              <th scope="col">Tipo Documento</th>
+              <th scope="col">Detalle de Productos</th>
+              <th scope="col">Stock</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -45,9 +53,10 @@ export default function VerCompra() {
                 </th>
                 <td>{user.fecha}</td>
                 <td>{user.nombre}</td>
-                <td>{user.proveedor.razonSocial}</td>
-                <td>{user.total}</td>
-                <td>{user.tipoDocumento}</td>
+                <td>{user.productos.categoria.nombre+" "+user.productos.marca.nombre
+                    +" "+user.productos.modelo.nombre}</td>
+                <td>{user.cantidad}</td>
+              
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
@@ -74,13 +83,7 @@ export default function VerCompra() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCompra"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
-      Regresar
-      </Link>
+      
       
     </div>
   );

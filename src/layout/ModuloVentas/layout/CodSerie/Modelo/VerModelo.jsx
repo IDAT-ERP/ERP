@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-export default function VerProducto() {
+export default function VerModelo() {
   
   const [users, setUsers] = useState([]);
 
@@ -13,12 +13,12 @@ export default function VerProducto() {
   }, []);
 
   const loadUsers = async () => {
-    const result = await axios.get("http://localhost:8080/ModCompras/verComprasProductos");
+    const result = await axios.get("http://localhost:8080/ModProductos/verModelo");
     setUsers(result.data);
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/ModCompras/compraProducto/${id}`);
+    await axios.delete(`http://localhost:8080/ModProductos/modelo/${id}`);
     loadUsers();
   };
 
@@ -29,10 +29,8 @@ export default function VerProducto() {
           <thead>
             <tr>
               <th scope="col">S.N</th>
-              <th scope="col">Categoria</th>
-              <th scope="col">Marca</th>
-              <th scope="col">Modelo</th>
-              <th scope="col">Precio Unitario</th>
+              <th scope="col">Nombre Marca</th>
+              <th scope="col">Nombre Modelo</th>
               <th scope="col">OPCIONES</th>
             </tr>
           </thead>
@@ -42,20 +40,18 @@ export default function VerProducto() {
                 <th scope="row" key={index}>
                   {index + 1}
                 </th>
-                <td>{user.categoria.nombre}</td>
                 <td>{user.marca.nombre}</td>
-                <td>{user.modelo.nombre}</td>
-                <td>{user.precio}</td>
+                <td>{user.nombre}</td>
                 <td>
                   <Link
                     className="btn btn-primary mx-2"
-                    to={`/viewcompra/${user.id}`}
+                    to={`/viewmodelo/${user.id}`}
                   >
                     View
                   </Link>
                   <Link
                     className="btn btn-outline-primary mx-2"
-                    to={`/editcompraproductos/${user.id}`}
+                    to={`/editmodelo/${user.id}`}
                   >
                     Edit
                   </Link>
@@ -72,11 +68,11 @@ export default function VerProducto() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarComprasProductos"}>
+      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarModelo"}>
       Agregar
       </Link>
 
-      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
+      <Link className="btn btn-outline-danger mx-2" to={"/ProductosCompra"}>
       Regresar
       </Link>
       

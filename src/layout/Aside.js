@@ -38,21 +38,21 @@ export default function Aside() {
             </li>
             
             <li className="panel">
-                <Link className="btn custom-outline-primary mx-2" to={`/`}>
+                <Link className="btn custom-outline-primary mx-2" to={`/modAlmacen`}>
                 <img className="img" src={imagenAlmacen}></img>
                 <span className="text">Almacén</span>
                 </Link>
             </li>
 
             <li className="panel">
-                <Link className="btn custom-outline-primary mx-2" to={`/edituser/:id`}>
+                <Link className="btn custom-outline-primary mx-2" to={`/modConfig`}>
                 <img className="img" src={imagenVentas}></img>
                 <span className="text">Ventas</span>
                 </Link>
             </li>
 
             <li className="panel">
-                <Link className="btn custom-outline-primary mx-2" to={`/adduser`}>
+                <Link className="btn custom-outline-primary mx-2" to={`/verClientes`}>
                 <img className="img" src={imagenClientes}></img>
                 <span className="text">Clientes</span>
                 </Link>

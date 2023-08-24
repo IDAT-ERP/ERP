@@ -37,6 +37,14 @@ import RegistrarComprasSeries from "./layout/ModuloCompras/layout/OrdenCompra/Co
 import EditarComprasSeries from "./layout/ModuloCompras/layout/OrdenCompra/ComprasSerie/EditSerie"
 
 
+import VerAlmacenStock from "./layout/ModuloAlmacén/layout/AlmacenStock/VerStockAlmacen"
+import RegistrarAlmacenStock from "./layout/ModuloAlmacén/layout/AlmacenStock/AddStockAlmacen"
+import EditarAlmacenStock from "./layout/ModuloAlmacén/layout/AlmacenStock/EditStockAlmacen"
+
+
+
+
+
 
 
 import AddEmpleado from "./users/AddEmpleado";
@@ -48,7 +56,7 @@ import EditProveedor from "./users/EditProveedor"
 
 import ModConfig from './layout/ModuloConfig/layout/ArticleModConfig'
 import ModCompras from "./layout/ModuloCompras/layout/ArticleModCompras"
-
+import ModAlmacen from "./layout/ModuloAlmacén/layout/ArticleModAlmacen"
 
 
 import AddProveedor from './users/AddProveedor';
@@ -100,6 +108,25 @@ function App() {
           <Route exact path="/verComprasSeries" element={<VerComprasSeries/>} />
           <Route exact path="/registrarComprasSeries" element={<RegistrarComprasSeries/>} />
           <Route exact path="/editcompraserie/:id" element={<EditarComprasSeries/>} />
+
+
+
+          <Route exact path="/modAlmacen" element={<ModAlmacen/>} />
+
+          <Route exact path="/verAlmacenStock" element={<VerAlmacenStock/>} />
+          <Route exact path="/registrarAlmacenStock" element={<RegistrarAlmacenStock/>} />
+          <Route exact path="/editalmacenstock/:id" element={<EditarAlmacenStock/>} />
+
+          
+          
+          <Route exact path="/verMarca" element={<VerMarca/>} />
+          <Route exact path="/registrarMarca" element={<RegistrarMarca/>} />
+          <Route exact path="/editmarca/:id" element={<EditarMarca/>} />
+
+          <Route exact path="/verModelo" element={<VerModelo/>} />
+          <Route exact path="/registrarModelo" element={<RegistrarModelo/>} />
+          <Route exact path="/editmodelo/:id" element={<EditarModelo/>} />
+
 
 
 

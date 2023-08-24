@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import imagenExcel from '../../../imagenes/excel.png';
 export default function VerDetalleCompra() {
   
   const [users, setUsers] = useState([]);
@@ -22,6 +22,32 @@ export default function VerDetalleCompra() {
     loadUsers();
   };
 
+  const exportToExcel = () => {
+    const csvData = [
+      ["S.N", "N° Orden de Compra", "Detalle Productos Adquiridos", "Cantidad"], // Encabezados
+      ...users.map((user, index) => [
+        index + 1,
+        user.compras.nombre,
+        user.productos.categoria.nombre+" "+user.productos.marca.nombre+" "+user.productos.modelo.nombre,
+        user.cantidad
+      ]),
+    ];
+
+    const csvRows = csvData.map(row => row.join(";")); // Cambio del separador a una pestaña
+    const csvContent = "\uFEFF" + csvRows.join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-16le;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "compras.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Limpiar la URL creada
+  };
+
+
   return (
     <div className="container">
       <Link className="btn btn-outline-primary mx-2" to={"/RegistrarDetalleCompra"}>
@@ -31,6 +57,12 @@ export default function VerDetalleCompra() {
       <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
       Regresar
       </Link>
+
+      <button className="btn btn-outline-success mx-2" onClick={exportToExcel}>
+        <img src={imagenExcel} alt="Excel Icon" className="mr-2 img" />
+        Exportar Excel
+      </button>
+
       <div className="py-4">
         <table className="table border shadow">
           <thead>

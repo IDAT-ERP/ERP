@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import imagenExcel from '../../../imagenes/excel.png';
 export default function VerCompra() {
   
   const [users, setUsers] = useState([]);
@@ -22,8 +22,49 @@ export default function VerCompra() {
     loadUsers();
   };
 
+
+  const exportToExcel = () => {
+    const csvData = [
+      ["S.N", "Fecha", "N° OC", "Proveedor", "Total", "Tipo Documento"], // Nuevos encabezados
+      ...users.map((user, index) => [
+        index + 1,
+        user.fecha,
+        user.nombre,
+        user.proveedor.razonSocial,
+        user.total,
+        user.tipoDocumento,
+      ]),
+    ];
+
+    const csvRows = csvData.map(row => row.join(";")); // Cambio del separador a punto y coma
+    const csvContent = "\uFEFF" + csvRows.join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-16le;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "compras.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Limpiar la URL creada
+  };
+
   return (
     <div className="container">
+
+<Link className="btn btn-outline-primary mx-2" to={"/RegistrarCompra"}>
+      Agregar
+      </Link>
+
+      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
+      Regresar
+      </Link>
+
+      <button className="btn btn-outline-success mx-2" onClick={exportToExcel}>
+        <img src={imagenExcel} alt="Excel Icon" className="mr-2 img" />
+        Exportar Excel
+      </button>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
@@ -74,13 +115,7 @@ export default function VerCompra() {
           </tbody>
         </table>
       </div>
-      <Link className="btn btn-outline-primary mx-2" to={"/RegistrarCompra"}>
-      Agregar
-      </Link>
-
-      <Link className="btn btn-outline-danger mx-2" to={"/OCCompra"}>
-      Regresar
-      </Link>
+     
       
     </div>
   );

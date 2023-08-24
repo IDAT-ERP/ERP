@@ -14,37 +14,27 @@ export default function ArticleProductos() {
                 <div className="container conten">
 
                     <div className="card ">
-                        <Link className="btn card-modConf" to={"/verCompra"}>
+                        <Link className="btn card-modConf" to={"/verCategoria"}>
 
                             <div class="card-body">
-                                <span className="texto">Registrar OC</span>
+                                <span className="texto">Registrar Categoria</span>
                             </div>
 
                         </Link>
                     </div>
                     <div className="card ">
-                        <Link className="btn card-modConf" to={"/verDetalleCompra"}>
+                        <Link className="btn card-modConf" to={"/verMarca"}>
                             <div class="card-body">
-                                <span className="texto">Registrar Detalle OC</span>
+                                <span className="texto">Registrar Marca</span>
                             </div>
 
                         </Link>
                     </div>
 
                     <div className="card ">
-                        <Link className="btn card-modConf" to={"/verComprasProductos"}>
+                        <Link className="btn card-modConf" to={"/verModelo"}>
                             <div class="card-body">
-                                <span className="texto">Registrar Detalle Productos</span>
-                            </div>
-
-                        </Link>
-                    </div>
-
-
-                    <div className="card ">
-                        <Link className="btn card-modConf" to={"/verComprasSeries"}>
-                            <div class="card-body">
-                                <span className="texto">Registrar Serie Productos</span>
+                                <span className="texto">Registrar Modelo</span>
                             </div>
 
                         </Link>

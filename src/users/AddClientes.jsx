@@ -104,7 +104,7 @@ export default function AddClientes() {
             <button type="submit" className="btn btn-outline-primary">
               Registrar
             </button>
-            <Link className="btn btn-outline-danger mx-2" to="/modConfig">
+            <Link className="btn btn-outline-danger mx-2" to="/verClientes">
               Cancelar
             </Link>
           </form>

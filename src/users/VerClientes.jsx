@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import imagenExcel from '../imagenes/excel.png';
 export default function VerPersonal() {
   
   const [users, setUsers] = useState([]);
@@ -28,6 +28,34 @@ export default function VerPersonal() {
     }
   };
 
+  const exportToExcel = () => {
+    const csvData = [
+      ["S.N", "Razon Social", "RUC", "Celular", "Correo", "Direccion"], // Nuevos encabezados
+      ...users.map((user, index) => [
+        index + 1,
+        user.razonSocial,
+        user.ruc,
+        user.celular,
+        user.correo,
+        user.direccion,
+      ]),
+    ];
+
+    const csvRows = csvData.map(row => row.join(";")); // Cambio del separador a punto y coma
+    const csvContent = "\uFEFF" + csvRows.join("\r\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-16le;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "proveedores.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url); // Limpiar la URL creada
+  };
+
+
   return (
     <div className="container">
       <Link className="btn btn-outline-primary mx-2" to={"/registroClientes"}>
@@ -37,6 +65,11 @@ export default function VerPersonal() {
       <Link className="btn btn-outline-danger mx-2" to={"/modConfig"}>
       Regresar
       </Link>
+
+      <button className="btn btn-outline-success mx-2" onClick={exportToExcel}>
+        <img src={imagenExcel} alt="Excel Icon" className="mr-2 img" />
+        Exportar Excel
+      </button>
       <div className="py-4">
         <table className="table border shadow">
           <thead>
